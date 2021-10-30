@@ -1,26 +1,125 @@
-<!doctype html>	
-<html>
-	<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  .container{
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
+ }
+  .collapse .item{ 
+    
+    border-top: 1px solid #ddd;
+    cursor: pointer;
+  }
+  .collapse .item:last-child{
+    border-bottom: 1px solid #ddd;
+  }
+  .item .item-header{
+    display: flex;
+    align-items: center;
+  
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 40px;
+    color: black;
+  }
+   .item .item-header::after {
+    content: '';
+    display: block;
+    margin-left: auto;
+    transform: rotate(45deg); 
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid #303030;
+    border-right: 1px solid #303030;
+    transition: all .3s;
+  }
+  .item.active .item-header::after{
+    transform: rotate(135deg);
+  }
+
+  .collapse .item-content{
+    font-size: 15px;
+    color: #333;
+    
+    height:0;
+    overflow: hidden;
+    transition: all .5s;
+  }
+  .collapse .item.active .item-content{
+    height: auto;
+    padding-bottom: 16px;
+    
+  }
+
+ </style>
+</head>
+<body>
+  <div class="container">
+    <h2>折叠面板</h2>
+    <div class="collapse">
+      <div class="item active">
+      <div class="item-header">一致性 Consisitency</div>
+      <div class="item-content">与生活一致:显示生活的流程,逻辑保持一致,遵循用户的语言与概念<br>
+      在界面一致:所有元素保持结构一致,比如:设计样式,文本图标,元素的位置等.</div>
+      </div>
+    
+    <div class="item">
+      <div class="item-header">反馈 Feedback</div>
+      <div class="item-content">与生活一致:显示生活的流程,逻辑保持一致,遵循用户的语言与概念<br>
+      在界面一致:所有元素保持结构一致,比如:设计样式,文本图标,元素的位置等.</div>
+      </div>
+      <div class="item">
+        <div class="item-header">效率 Efficency</div>
+        <div class="item-content">与生活一致:显示生活的流程,逻辑保持一致,遵循用户的语言与概念<br>
+        在界面一致:所有元素保持结构一致,比如:设计样式,文本图标,元素的位置等.</div>
+        </div>
+        <div class="item">
+          <div class="item-header">可控性 Controllability</div>
+          <div class="item-content">与生活一致:显示生活的流程,逻辑保持一致,遵循用户的语言与概念<br>
+          在界面一致:所有元素保持结构一致,比如:设计样式,文本图标,元素的位置等.</div>
+          </div>
+        </div>
+        </div>
+        <script>
+ class Collapse {
+    constructor($container, type = 1) {
+      this.$container = $container
+      this.$$items = $container.querySelectorAll('.item')
+      this.type = type
+
+      this.bind()
+    }
+
+    bind() {
+      let self = this
+      this.$$items.forEach($item => {
+        $item.onclick = function() {
+          if(self.type === 2) {
+            
+            this.classList.toggle('active')
+          } else if(self.type === 1||2) {
+            self.$$items.forEach($item => $item.classList.remove('active'))
+            this.classList.add('active')
+          }
+          
+
+        }
+      })
+    }
+  }
+
+  new Collapse(document.querySelectorAll('.collapse')[0])
+  new Collapse(document.querySelectorAll('.collapse')[1])
 
 
-
-
-
-	</head>
-	<body>
-               <h1>welcome to daily dictation</h1>
-
-
-
-
-
-
-
-
-
-
-	</body>
-
-
+            </script>
+</body>
 </html>
-	
